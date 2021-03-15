@@ -5,6 +5,7 @@ import lombok.Value;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 public class DataHelper {
 
@@ -29,6 +30,9 @@ public class DataHelper {
     }
 
     public String setCity(Faker faker) {
-        return faker.address().city();
+        String[] city = { "Кемерово", "Майкоп", "Москва", "Симферополь", "Смоленск", "Тамбов", "Санкт-Петербург"};
+        int rnd = new Random().nextInt(city.length);
+        return city[rnd];
+//        return faker.address().city();
     }
 }

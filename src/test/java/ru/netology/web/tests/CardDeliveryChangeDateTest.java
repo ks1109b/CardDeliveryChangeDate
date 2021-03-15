@@ -24,17 +24,16 @@ public class CardDeliveryChangeDateTest {
     void shouldSendFormAgain() {
         faker = new Faker(new Locale("ru"));
         open("http://localhost:9999/");
-        $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL, "A"), Keys.DELETE);
 
         $("[data-test-id=city] input").setValue(dataHelper.setCity(faker));
+        $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL, "A"), Keys.DELETE);
         $("[data-test-id=date] input").setValue(dataHelper.setDate(5));
         $("[data-test-id=name] input").setValue(dataHelper.setName(faker));
         $("[data-test-id=phone] input").setValue(dataHelper.setPhone(faker));
         $("[data-test-id=agreement]").click();
         $(withText("Запланировать")).click();
         $("[data-test-id=success-notification]")
-                .shouldBe((visible))
-                .shouldHave(text("Успешно!"));
+                .shouldBe((visible)).shouldHave(text("Успешно!"));
         String date = $("[data-test-id=date] input").getValue();
         String text = $("[data-test-id='success-notification'] .notification__content").text();
         assertEquals("Встреча успешно запланирована на " + date, text);
@@ -43,12 +42,10 @@ public class CardDeliveryChangeDateTest {
         $("[data-test-id=date] input").setValue(dataHelper.setDate(10));
         $(withText("Запланировать")).click();
         $("[data-test-id=replan-notification]")
-                .shouldBe((visible))
-                .shouldHave(text("Необходимо подтверждение"));
+                .shouldBe((visible)).shouldHave(text("Необходимо подтверждение"));
         $(withText("Перепланировать")).click();
         $("[data-test-id=success-notification]")
-                .shouldBe((visible))
-                .shouldHave(text("Успешно!"));
+                .shouldBe((visible)).shouldHave(text("Успешно!"));
         String expected = $("[data-test-id=date] input").getValue();
         String actual = $("[data-test-id='success-notification'] .notification__content").text();
         assertEquals("Встреча успешно запланирована на " + expected, actual);
