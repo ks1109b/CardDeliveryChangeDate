@@ -1,11 +1,8 @@
 package ru.netology.web.tests;
 
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.web.data.DataHelper;
-
-import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
@@ -16,7 +13,7 @@ public class CardDeliveryChangeDateTest {
 
     @Test
     void shouldSendFormAgain() {
-        open("http://localhost:7777/");
+        open("http://localhost:9999/");
 
         $("[data-test-id=city] input").setValue(DataHelper.setCity());
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL, "A"), Keys.DELETE);
