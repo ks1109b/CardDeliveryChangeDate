@@ -1,5 +1,7 @@
 package ru.netology.web.tests;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.Keys;
 import ru.netology.web.data.DataHelper;
@@ -13,6 +15,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CardDeliveryTest {
 
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
     @BeforeEach
     void setUp() {
         open("http://localhost:9999/");
